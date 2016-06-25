@@ -1,21 +1,21 @@
 #include <stdio.h>
-#include <limits.h>
 
 #define NORDS 4
+#define INFINITE 100000000
+
 int visited[NORDS];
 int cost[NORDS];
 int prev[NORDS];
 int route[NORDS][NORDS];
 
 void search(int start) {
-	int i;
 	int min;
 	int next;
 	int newcost;
 
 	cost[start] = 0;
 	while (start != -1) {
-		min = INT_MAX;
+		min = INFINITE;
 		next = -1;
 		visited[start] = true;
 		for (int i = 0; i < NORDS; i++) {
@@ -37,13 +37,6 @@ void search(int start) {
 
 void printPath(int start, int goal) {
 	int node;
-
-	printf("---------------------\n");
-	for (int i = 0; i < NORDS; i++) {
-		printf("ノード%d（直前の頂点%d) コスト%d\n", i, prev[i], cost[i]);
-	}
-
-
 	node = goal;
 	while (node != start) {
 		printf("%d < ", node);
@@ -71,7 +64,7 @@ int main() {
 	route[3][2] = 1;
 	route[3][3] = 0;
 	for (int i = 0; i < NORDS; i++) {
-		cost[i] = INT_MAX;
+		cost[i] = INFINITE;
 		visited[i] = false;
 	}
 
