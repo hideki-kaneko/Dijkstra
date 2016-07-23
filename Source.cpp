@@ -19,11 +19,13 @@ void search(int start) {
 		next = -1;
 		visited[start] = true;
 		for (int i = 0; i < NORDS; i++) {
-			if (visited[i] == false && route[start][i] != 0) {
-				newcost = cost[start] + route[start][i];
-				if (newcost < cost[i]) {
-					cost[i] = newcost;
-					prev[i] = start;
+			if (visited[i] == false) {
+				if(route[start][i] != 0){
+					newcost = cost[start] + route[start][i];
+					if (newcost < cost[i]) {
+						cost[i] = newcost;
+						prev[i] = start;
+					}	
 				}
 				if (cost[i] < min) {
 					min = cost[i];
